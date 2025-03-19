@@ -3,9 +3,9 @@ package com.example.larpet.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Pets
-import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.EventNote
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,15 +27,15 @@ fun MainScreen(navController: NavHostController) {
         ),
         NavigationItem(
             title = stringResource(R.string.adoption),
-            icon = Icons.Default.Pets
+            icon = Icons.Default.Favorite
         ),
         NavigationItem(
             title = stringResource(R.string.events),
-            icon = Icons.Default.Event
+            icon = Icons.Default.EventNote
         ),
         NavigationItem(
             title = stringResource(R.string.calendar),
-            icon = Icons.Default.CalendarMonth
+            icon = Icons.Default.DateRange
         ),
         NavigationItem(
             title = stringResource(R.string.profile),
