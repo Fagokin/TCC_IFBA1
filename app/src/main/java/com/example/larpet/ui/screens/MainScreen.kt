@@ -2,7 +2,11 @@ package com.example.larpet.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Pets
+import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -32,7 +36,7 @@ fun MainScreen(navController: NavController) {
         ),
         NavigationItem(
             title = stringResource(R.string.calendar),
-            icon = Icons.Default.CalendarToday
+            icon = Icons.Default.CalendarMonth
         ),
         NavigationItem(
             title = stringResource(R.string.profile),
