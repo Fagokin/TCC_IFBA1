@@ -1,15 +1,10 @@
 package com.example.larpet.ui.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -23,23 +18,23 @@ fun MainScreen(navController: NavHostController) {
     val items = listOf(
         NavigationItem(
             title = stringResource(R.string.home),
-            icon = Icons.Default.Home
+            iconResId = R.drawable.ic_home
         ),
         NavigationItem(
             title = stringResource(R.string.adoption),
-            icon = Icons.Default.Favorite
+            iconResId = R.drawable.ic_adoption
         ),
         NavigationItem(
             title = stringResource(R.string.events),
-            icon = Icons.Default.Event
+            iconResId = R.drawable.ic_events
         ),
         NavigationItem(
             title = stringResource(R.string.calendar),
-            icon = Icons.Default.DateRange
+            iconResId = R.drawable.ic_calendar
         ),
         NavigationItem(
             title = stringResource(R.string.profile),
-            icon = Icons.Default.Person
+            iconResId = R.drawable.ic_profile
         )
     )
 
@@ -48,7 +43,7 @@ fun MainScreen(navController: NavHostController) {
             NavigationBar {
                 items.forEachIndexed { index, item ->
                     NavigationBarItem(
-                        icon = { Icon(item.icon, contentDescription = item.title) },
+                        icon = { Icon(painterResource(item.iconResId), contentDescription = item.title) },
                         label = { Text(item.title) },
                         selected = selectedItem == index,
                         onClick = { selectedItem = index }
@@ -73,5 +68,5 @@ fun MainScreen(navController: NavHostController) {
 
 data class NavigationItem(
     val title: String,
-    val icon: androidx.compose.ui.graphics.vector.ImageVector
+    val iconResId: Int
 ) 
