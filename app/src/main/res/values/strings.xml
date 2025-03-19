@@ -1,3 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LarPet</string>
+    <string name="login">Login</string>
+    <string name="register">Cadastrar</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="enter">Entrar</string>
+    <string name="continue_with_google">Continuar com Google</string>
+    <string name="home">Início</string>
+    <string name="location">Localização</string>
+    <string name="calendar">Calendário</string>
+    <string name="profile">Perfil</string>
+    <string name="adoption">Adoção</string>
+    <string name="events">Eventos</string>
+    <string name="pet_care_tips">Dicas para cuidar do seu pet</string>
+    <string name="find_friend">Encontre seu novo melhor amigo</string>
+    <string name="upcoming_events">Confira os próximos eventos e mutirões</string>
+    <string name="blog_access">Acesse nosso blog com dicas e informações</string>
+    <string name="edit_profile">Editar perfil</string>
+    <string name="security">Segurança e uso de dados</string>
+    <string name="privacy_policy">Política de privacidade</string>
+    <string name="help">Ajuda/FAQ</string>
+    <string name="logout">Sair</string>
+    <string name="adopt">Quero Adotar</string>
+    <string name="register_event">Inscrever-se</string>
 </resources>
