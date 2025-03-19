@@ -35,7 +35,7 @@ fun SplashScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = R.drawable.logo),
+                painter = painterResource(id = R.drawable.logo_larpet),
                 contentDescription = stringResource(R.string.app_name),
                 modifier = Modifier.size(200.dp)
             )
