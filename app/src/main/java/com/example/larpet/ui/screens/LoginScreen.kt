@@ -15,7 +15,6 @@ import com.example.larpet.R
 fun LoginScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var showMainScreen by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -44,7 +43,11 @@ fun LoginScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { showMainScreen = true },
+            onClick = {
+                navController.navigate("main") {
+                    popUpTo("login") { inclusive = true }
+                }
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.login))
@@ -58,9 +61,5 @@ fun LoginScreen(navController: NavHostController) {
         ) {
             Text(stringResource(R.string.continue_with_google))
         }
-    }
-
-    if (showMainScreen) {
-        MainScreen(navController)
     }
 } 
