@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.EventNote
+import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
@@ -31,7 +31,7 @@ fun MainScreen(navController: NavHostController) {
         ),
         NavigationItem(
             title = stringResource(R.string.events),
-            icon = Icons.Default.EventNote
+            icon = Icons.Default.Event
         ),
         NavigationItem(
             title = stringResource(R.string.calendar),
