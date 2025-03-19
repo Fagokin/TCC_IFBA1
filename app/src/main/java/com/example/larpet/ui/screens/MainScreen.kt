@@ -9,12 +9,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.larpet.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavHostController) {
+fun MainScreen(parentNavController: NavHostController) {
     var selectedItem by remember { mutableStateOf(0) }
+    val navController = rememberNavController()
     val items = listOf(
         NavigationItem(
             title = stringResource(R.string.home),
@@ -37,6 +39,20 @@ fun MainScreen(navController: NavHostController) {
             iconResId = R.drawable.ic_profile
         )
     )
+
+    // Map navigation items to their routes
+    val routes = listOf("home", "adoption", "events", "calendar", "profile")
+
+    // Handle navigation when bottom bar item is selected
+    LaunchedEffect(selectedItem) {
+        navController.navigate(routes[selectedItem]) {
+            popUpTo(routes[0]) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
 
     Scaffold(
         bottomBar = {
