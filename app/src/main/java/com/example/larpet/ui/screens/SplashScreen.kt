@@ -29,7 +29,7 @@ fun SplashScreen(navController: NavHostController) {
         startAnimation = true
         delay(2000)
         navController.navigate("login") {
-            popUpTo("splash") { inclusive = true }
+            popUpTo(0)
         }
     }
 
