@@ -8,19 +8,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.larpet.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showMainScreen by remember { mutableStateOf(false) }
-
-    if (showMainScreen) {
-        MainScreen()
-        return
-    }
 
     Column(
         modifier = Modifier
@@ -29,22 +24,15 @@ fun LoginScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = stringResource(R.string.login),
-            style = MaterialTheme.typography.headlineMedium
-        )
-        
-        Spacer(modifier = Modifier.height(32.dp))
-        
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text(stringResource(R.string.email)) },
             modifier = Modifier.fillMaxWidth()
         )
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -52,23 +40,27 @@ fun LoginScreen() {
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()
         )
-        
-        Spacer(modifier = Modifier.height(32.dp))
-        
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Button(
             onClick = { showMainScreen = true },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(stringResource(R.string.enter))
+            Text(stringResource(R.string.login))
         }
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         OutlinedButton(
-            onClick = { showMainScreen = true },
+            onClick = { /* TODO: Implementar login com Google */ },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.continue_with_google))
         }
+    }
+
+    if (showMainScreen) {
+        MainScreen(navController)
     }
 } 

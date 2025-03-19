@@ -1,75 +1,74 @@
 package com.example.larpet.ui.screens
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Pets
-import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.larpet.R
-import com.example.larpet.navigation.Screen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavController) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+    var selectedItem by remember { mutableStateOf(0) }
+    val items = listOf(
+        NavigationItem(
+            title = stringResource(R.string.home),
+            icon = Icons.Default.Home
+        ),
+        NavigationItem(
+            title = stringResource(R.string.adoption),
+            icon = Icons.Default.Pets
+        ),
+        NavigationItem(
+            title = stringResource(R.string.events),
+            icon = Icons.Default.Event
+        ),
+        NavigationItem(
+            title = stringResource(R.string.calendar),
+            icon = Icons.Default.CalendarToday
+        ),
+        NavigationItem(
+            title = stringResource(R.string.profile),
+            icon = Icons.Default.Person
+        )
+    )
 
     Scaffold(
         bottomBar = {
             NavigationBar {
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = null) },
-                    label = { Text(stringResource(R.string.home)) },
-                    selected = currentRoute == Screen.Home.route,
-                    onClick = { navController.navigate(Screen.Home.route) }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Pets, contentDescription = null) },
-                    label = { Text(stringResource(R.string.adoption)) },
-                    selected = currentRoute == Screen.Adoption.route,
-                    onClick = { navController.navigate(Screen.Adoption.route) }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Event, contentDescription = null) },
-                    label = { Text(stringResource(R.string.events)) },
-                    selected = currentRoute == Screen.Events.route,
-                    onClick = { navController.navigate(Screen.Events.route) }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.CalendarMonth, contentDescription = null) },
-                    label = { Text(stringResource(R.string.calendar)) },
-                    selected = currentRoute == Screen.Calendar.route,
-                    onClick = { navController.navigate(Screen.Calendar.route) }
-                )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Person, contentDescription = null) },
-                    label = { Text(stringResource(R.string.profile)) },
-                    selected = currentRoute == Screen.Profile.route,
-                    onClick = { navController.navigate(Screen.Profile.route) }
-                )
+                items.forEachIndexed { index, item ->
+                    NavigationBarItem(
+                        icon = { Icon(item.icon, contentDescription = item.title) },
+                        label = { Text(item.title) },
+                        selected = selectedItem == index,
+                        onClick = { selectedItem = index }
+                    )
+                }
             }
         }
     ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
+        NavHost(
+            navController = navController,
+            startDestination = "home",
+            modifier = Modifier.padding(paddingValues)
         ) {
-            // O conteúdo será gerenciado pelo NavHost
+            composable("home") { HomeScreen() }
+            composable("adoption") { AdoptionScreen() }
+            composable("events") { EventsScreen() }
+            composable("calendar") { CalendarScreen() }
+            composable("profile") { ProfileScreen() }
         }
     }
-} 
+}
+
+data class NavigationItem(
+    val title: String,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector
+) 
