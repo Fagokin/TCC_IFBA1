@@ -8,29 +8,19 @@ import androidx.navigation.compose.composable
 import com.example.larpet.ui.screens.*
 
 @Composable
-fun NavGraph(
-    navController: NavHostController,
-    modifier: Modifier = Modifier
-) {
+fun NavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route,
-        modifier = modifier
+        startDestination = "splash"
     ) {
-        composable(Screen.Home.route) {
-            HomeScreen()
+        composable("splash") {
+            SplashScreen(navController = navController)
         }
-        composable(Screen.Adoption.route) {
-            AdoptionScreen()
+        composable("login") {
+            LoginScreen(navController = navController)
         }
-        composable(Screen.Events.route) {
-            EventsScreen()
-        }
-        composable(Screen.Calendar.route) {
-            CalendarScreen()
-        }
-        composable(Screen.Profile.route) {
-            ProfileScreen()
+        composable("main") {
+            MainScreen(parentNavController = navController)
         }
     }
 } 

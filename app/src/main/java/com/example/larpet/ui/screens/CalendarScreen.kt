@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
@@ -22,7 +21,7 @@ import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CalendarScreen(navController: NavController) {
+fun CalendarScreen() {
     var currentDate by remember { mutableStateOf(YearMonth.now()) }
 
     Column(
