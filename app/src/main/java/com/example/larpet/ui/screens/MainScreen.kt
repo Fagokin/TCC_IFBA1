@@ -73,11 +73,11 @@ fun MainScreen(parentNavController: NavHostController) {
             startDestination = "home",
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable("home") { HomeScreen() }
-            composable("adoption") { AdoptionScreen() }
-            composable("events") { EventsScreen() }
-            composable("calendar") { CalendarScreen() }
-            composable("profile") { ProfileScreen() }
+            composable("home") { HomeScreen(navController) }
+            composable("adoption") { AdoptionScreen(navController) }
+            composable("events") { EventsScreen(navController) }
+            composable("calendar") { CalendarScreen(navController) }
+            composable("profile") { ProfileScreen(navController) }
         }
     }
 }
