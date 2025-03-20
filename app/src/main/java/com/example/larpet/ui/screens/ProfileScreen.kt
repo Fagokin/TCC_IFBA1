@@ -1,5 +1,6 @@
 package com.example.larpet.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(navController: NavController) {
     Column(
@@ -52,24 +54,60 @@ fun ProfileScreen(navController: NavController) {
         }
 
         // Opções do perfil
-        ListItem(
-            headlineContent = { Text("Editar perfil") },
-            modifier = Modifier.clickable { /* Implementar ação */ }
-        )
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { /* Implementar ação */ }
+                .padding(vertical = 8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Text(
+                text = "Editar perfil",
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
         
-        ListItem(
-            headlineContent = { Text("Segurança e uso de dados") },
-            modifier = Modifier.clickable { /* Implementar ação */ }
-        )
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { /* Implementar ação */ }
+                .padding(vertical = 8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Text(
+                text = "Segurança e uso de dados",
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
         
-        ListItem(
-            headlineContent = { Text("Política de privacidade") },
-            modifier = Modifier.clickable { /* Implementar ação */ }
-        )
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { /* Implementar ação */ }
+                .padding(vertical = 8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Text(
+                text = "Política de privacidade",
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
         
-        ListItem(
-            headlineContent = { Text("Ajuda/FAQ") },
-            modifier = Modifier.clickable { /* Implementar ação */ }
-        )
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { /* Implementar ação */ }
+                .padding(vertical = 8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Text(
+                text = "Ajuda/FAQ",
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
     }
 } 

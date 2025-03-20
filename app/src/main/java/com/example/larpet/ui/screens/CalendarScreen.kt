@@ -1,6 +1,9 @@
 package com.example.larpet.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -9,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -18,6 +20,7 @@ import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalendarScreen(navController: NavController) {
     var currentDate by remember { mutableStateOf(YearMonth.now()) }
@@ -81,6 +84,8 @@ fun CalendarScreen(navController: NavController) {
             }
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         // Grid do calendário
         val firstDayOfMonth = currentDate.atDay(1)
         val daysInMonth = currentDate.lengthOfMonth()
@@ -88,38 +93,47 @@ fun CalendarScreen(navController: NavController) {
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(7),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             // Espaços vazios antes do primeiro dia
             items(firstDayOfWeek) {
-                Box(modifier = Modifier.aspectRatio(1f))
+                Box(
+                    modifier = Modifier
+                        .aspectRatio(1f)
+                        .padding(2.dp)
+                )
             }
 
             // Dias do mês
             items(daysInMonth) { day ->
+                val isToday = LocalDate.now().let { 
+                    it.dayOfMonth == day + 1 && 
+                    it.month == currentDate.month && 
+                    it.year == currentDate.year 
+                }
+                
                 Box(
                     modifier = Modifier
                         .aspectRatio(1f)
-                        .padding(4.dp),
+                        .padding(2.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    val isToday = LocalDate.now().let { 
-                        it.dayOfMonth == day + 1 && 
-                        it.month == currentDate.month && 
-                        it.year == currentDate.year 
-                    }
-                    
                     Surface(
                         modifier = Modifier.size(36.dp),
-                        shape = CircleShape,
+                        shape = MaterialTheme.shapes.small,
                         color = if (isToday) MaterialTheme.colorScheme.primary else Color.Transparent
                     ) {
-                        Text(
-                            text = "${day + 1}",
-                            modifier = Modifier.padding(8.dp),
-                            color = if (isToday) Color.White else MaterialTheme.colorScheme.onSurface,
-                            textAlign = TextAlign.Center
-                        )
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "${day + 1}",
+                                color = if (isToday) Color.White else MaterialTheme.colorScheme.onSurface,
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 }
             }
